@@ -15,7 +15,11 @@ jobs:
       vmImage: ubuntu-16.04
     steps:
       - download: current
-
+      - task: ArchiveFiles@2
+        inputs: $(Agent.BuildDirectory)/dist
+        includeRootFolder: true
+        archiveFile: $(Agent.BuildDirectory)/dist.tar.gz
+        replaceExistingArchive: true 
       - task: GitHubRelease@1
         displayName: "GitHub release ${{ parameters.action }}"
         inputs:
@@ -28,6 +32,7 @@ jobs:
             $(Agent.BuildDirectory)/dist/bedrock-linux
             $(Agent.BuildDirectory)/dist/bedrock-macos
             $(Agent.BuildDirectory)/dist/bedrock-win.exe
+            $(Agent.BuildDirectory)/dist.tar.gz
           tagSource: ${{ parameters.tagSource }}
           isDraft: ${{ parameters.isDraft }}
           isPreRelease: ${{ parameters.isPrelease }}
