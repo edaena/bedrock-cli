@@ -16,10 +16,11 @@ jobs:
     steps:
       - download: current
       - task: ArchiveFiles@2
-        inputs: $(Agent.BuildDirectory)/dist
-        includeRootFolder: true
-        archiveFile: $(Agent.BuildDirectory)/dist.tar.gz
-        replaceExistingArchive: true 
+        inputs: 
+          rootFolderOrFile: $(Agent.BuildDirectory)/dist
+          includeRootFolder: true
+          archiveFile: $(Agent.BuildDirectory)/dist.tar.gz
+          replaceExistingArchive: true 
       - task: GitHubRelease@1
         displayName: "GitHub release ${{ parameters.action }}"
         inputs:
