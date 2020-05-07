@@ -19,7 +19,7 @@ stages:
     jobs:
       - template: azure-pipelines/templates/create-github-release.yml
         parameters:
-          GitHubConnection: "bedrock-cli"
+          GitHubConnection: "edaena"
           releaseNotesFilePath: "CHANGELOG.md"
           tagSource: "gitTag" # or "userSpecifiedTag"
           addChangeLog: true
