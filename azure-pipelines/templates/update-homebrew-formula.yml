@@ -17,7 +17,8 @@ jobs:
       - checkout: BedrockHomebrewCore
         persistCredentials: true
         clean: true
-      - script: dir $(Build.SourcesDirectory)
-      - script: ls
-      - script: git pull origin master
+      - script: |
+          dir $(Build.SourcesDirectory)
+          ls
+          git pull origin master
       
