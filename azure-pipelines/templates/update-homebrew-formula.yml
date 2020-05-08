@@ -32,7 +32,14 @@ jobs:
           git config user.email "admin@azuredevops.com"
           git config user.name "Automated Account"
           touch readme2.md
-          git add -f readme2.md
-          git commit -m "Add readme2"
-          git push origin master
+          git branch update
+          git checkut update
+          sha_number="testsha9d"
+          release_url="https:\/\/hi.com"
+          sed "s/url \".*\"/url \"$release_url\"/g" bedrock-cli-test.rb >> bedrock-cli-test.rb
+          sed "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli-test.rb >> bedrock-cli-test.rb
+          git add -f Formula/bedrock-cli.rb
+          git commit -m "Update formula"
+          git push origin update
+          #git push origin master
       
