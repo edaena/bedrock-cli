@@ -1,0 +1,24 @@
+parameters:
+  GitHubConnection: "edaena" # defaults for any parameters that aren't specified
+  
+resources:
+  repositories:
+  - repository: BedrockHomebrewCore # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: ${{ parameters.GitHubConnection }}
+    name: edaena/homebrew-core
+
+jobs:
+  - job: Create_Github_Release
+    timeoutInMinutes: 30 # timeout on job if deploy is not completed in 30 minutes
+    pool:
+      vmImage: ubuntu-16.04
+    steps:
+      - checkout: BedrockHomebrewCore
+        persistCredentials: true
+        clean: true
+      - script: dir $(Build.SourcesDirectory)
+      - script: |
+      cd $(Build.SourcesDirectory)/BedrockHomebrewCore
+      git pull
+      
