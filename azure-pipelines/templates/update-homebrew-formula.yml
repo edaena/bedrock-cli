@@ -34,7 +34,7 @@ jobs:
           touch readme2.md
           git branch update2
           git checkout update2
-          #git pull origin update2
+          git pull origin update2
           sha_number="testsha9d"
           release_url="https:\/\/hi.com"
           echo "ls"
