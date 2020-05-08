@@ -1,5 +1,6 @@
-#parameters:
-#  GitHubConnection: "edaena" # defaults for any parameters that aren't specified
+  
+parameters:
+  GitHubConnection: "" # defaults for any parameters that aren't specified
   
 resources:
   repositories:
