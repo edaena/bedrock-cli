@@ -5,6 +5,13 @@ trigger:
 
 pr: none # disable CI build for PR
 
+resources:
+  repositories:
+  - repository: BedrockHomebrewCore # The name used to reference this repository in the checkout step
+    type: github
+    endpoint: ${{ parameters.GitHubConnection }}
+    name: edaena/homebrew-core
+
 stages:
   - stage: package_build
     jobs:

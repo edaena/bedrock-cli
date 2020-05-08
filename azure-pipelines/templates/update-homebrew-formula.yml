@@ -5,24 +5,11 @@ parameters:
   GitHubConnection: "" # defaults for any parameters that aren't specified
   tagSource: "gitTag"
 
-# resources:
-#   repositories:
-#   - repository: BedrockHomebrewCore # The name used to reference this repository in the checkout step
-#     type: github
-#     endpoint: ${{ parameters.GitHubConnection }}
-#     name: edaena/homebrew-core
-
 jobs:
   - job: Update_Homebrew_Formula
     timeoutInMinutes: 30 # timeout on job if deploy is not completed in 30 minutes
     pool:
       vmImage: ubuntu-16.04
-    resources:
-      repositories:
-      - repository: BedrockHomebrewCore # The name used to reference this repository in the checkout step
-        type: github
-        endpoint: ${{ parameters.GitHubConnection }}
-        name: edaena/homebrew-core
     steps:
       - download: current
       - task: NodeTool@0
