@@ -15,12 +15,15 @@ jobs:
     pool:
       vmImage: ubuntu-16.04
     steps:
+      - checkout: self
       - checkout: BedrockHomebrewCore
         persistCredentials: true
         clean: true
       - script: |
           dir $(Build.SourcesDirectory)
+          echo "ls:"
           ls
+          echo "pwd:"
           pwd
           git pull origin master
       
