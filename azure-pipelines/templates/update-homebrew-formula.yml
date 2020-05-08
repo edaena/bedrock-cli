@@ -27,6 +27,9 @@ jobs:
           pwd
           cd homebrew-core
           git pull origin master
+          # Set git identity
+          git config user.email "admin@azuredevops.com"
+          git config user.name "Automated Account"
           touch readme2.md
           git add -f readme2.md
           git commit -m "Add readme2"
