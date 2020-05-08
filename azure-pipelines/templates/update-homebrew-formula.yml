@@ -38,7 +38,7 @@ jobs:
           release_url="https:\/\/hi.com"
           sed "s/url \".*\"/url \"$release_url\"/g" ./Formula/bedrock-cli-test.rb >> bedrock-cli-test.rb
           sed "s/sha256 \".*\"/sha256 \"$sha_number\"/g" ./Formula/bedrock-cli-test.rb >> ./Formula/bedrock-cli-test.rb
-          git add -f Formula/bedrock-cli.rb
+          git add -f ./Formula/bedrock-cli.rb
           git commit -m "Update formula"
           git push origin update
           #git push origin master
