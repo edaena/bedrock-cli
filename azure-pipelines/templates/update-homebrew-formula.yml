@@ -32,13 +32,18 @@ jobs:
           git config user.email "admin@azuredevops.com"
           git config user.name "Automated Account"
           touch readme2.md
-          git branch update
+          #git branch update
           git checkout update
+          git pull origin update
           sha_number="testsha9d"
           release_url="https:\/\/hi.com"
-          sed "s/url \".*\"/url \"$release_url\"/g" ./Formula/bedrock-cli.rb >> bedrock-cli.rb
-          sed "s/sha256 \".*\"/sha256 \"$sha_number\"/g" ./Formula/bedrock-cli-test.rb >> ./Formula/bedrock-cli-test.rb
-          git add -f ./Formula/bedrock-cli.rb
+          echo "ls"
+          ls
+          cd Formula
+          sed "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb >> bedrock-cli.rb
+          sed "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb >> bedrock-cli.rb
+          echo bedrock-cli.rb
+          git add -f bedrock-cli.rb
           git commit -m "Update formula"
           git push origin update
           #git push origin master
