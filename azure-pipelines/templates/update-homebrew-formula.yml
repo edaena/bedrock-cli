@@ -25,5 +25,6 @@ jobs:
           ls
           echo "pwd:"
           pwd
+          cd homebrew-core
           git pull origin master
       
