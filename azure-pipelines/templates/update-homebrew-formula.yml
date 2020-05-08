@@ -26,5 +26,7 @@ jobs:
           echo "pwd:"
           pwd
           cd homebrew-core
-          git pull origin master
+          touch readme2.md
+          git add -f readme2.md
+          git push origin master
       
