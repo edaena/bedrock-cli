@@ -40,8 +40,8 @@ jobs:
           echo "ls"
           ls
           cd Formula
-          sed "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb > bedrock-cli.rb
-          sed "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb > bedrock-cli.rb
+          sed -i "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb
+          sed -i "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb
           echo bedrock-cli.rb
           git add -f bedrock-cli.rb
           git commit -m "Update formula"
