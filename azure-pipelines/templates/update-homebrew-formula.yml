@@ -18,6 +18,7 @@ jobs:
         persistCredentials: true
         clean: true
       - script: dir $(Build.SourcesDirectory)
+      - script: ls
       - script: cd $(Build.SourcesDirectory)/BedrockHomebrewCore/homebrew-core
       - script: git pull
       
