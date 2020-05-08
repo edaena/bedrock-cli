@@ -1,11 +1,11 @@
-parameters:
-  GitHubConnection: "edaena" # defaults for any parameters that aren't specified
+#parameters:
+#  GitHubConnection: "edaena" # defaults for any parameters that aren't specified
   
 resources:
   repositories:
   - repository: BedrockHomebrewCore # The name used to reference this repository in the checkout step
     type: github
-    endpoint: ${{ parameters.GitHubConnection }}
+    endpoint: edaena
     name: edaena/homebrew-core
 
 jobs:
@@ -18,7 +18,6 @@ jobs:
         persistCredentials: true
         clean: true
       - script: dir $(Build.SourcesDirectory)
-      - script: |
-      cd $(Build.SourcesDirectory)/BedrockHomebrewCore
-      git pull
+      - script: cd $(Build.SourcesDirectory)/BedrockHomebrewCore
+      - script: git pull
       
