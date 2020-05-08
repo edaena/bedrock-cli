@@ -27,6 +27,7 @@ jobs:
           pwd
           cd homebrew-core
           git pull origin master
+          git checkout -b master
           # Set git identity
           git config user.email "admin@azuredevops.com"
           git config user.name "Automated Account"
