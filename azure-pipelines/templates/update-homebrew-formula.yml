@@ -33,7 +33,7 @@ jobs:
           git config user.name "Automated Account"
           touch readme2.md
           git branch update
-          git checkut update
+          git checkout update
           sha_number="testsha9d"
           release_url="https:\/\/hi.com"
           sed "s/url \".*\"/url \"$release_url\"/g" bedrock-cli-test.rb >> bedrock-cli-test.rb
