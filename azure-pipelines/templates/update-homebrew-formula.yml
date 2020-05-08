@@ -1,50 +1,73 @@
   
 #parameters:
 #  GitHubConnection: "" # defaults for any parameters that aren't specified
+parameters:
+  GitHubConnection: "" # defaults for any parameters that aren't specified
+  tagSource: "gitTag"
 
 resources:
   repositories:
   - repository: BedrockHomebrewCore # The name used to reference this repository in the checkout step
     type: github
-    endpoint: edaena
+    endpoint: ${{ parameters.GitHubConnection }}
     name: edaena/homebrew-core
 
 jobs:
-  - job: Create_Github_Release
+  - job: Update_Homebrew_Formula
     timeoutInMinutes: 30 # timeout on job if deploy is not completed in 30 minutes
     pool:
       vmImage: ubuntu-16.04
     steps:
-      - checkout: self
+      - download: current
+      - task: NodeTool@0
+        displayName: "Use Node 12.x"
+        inputs:
+          versionSpec: 12.x
       - checkout: BedrockHomebrewCore
         persistCredentials: true
         clean: true
       - script: |
+          echo "Compute dist sha256"
+          file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/dist.tar.gz)
+          sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
+
+          echo "sha number:"
+          echo $sha_number
+
+          package_version=$(node -p -e "require('./$(Agent.BuildDirectory)/package.json').version")
+          echo "package version:"
+          echo $package_version
+
           dir $(Build.SourcesDirectory)
           echo "ls:"
           ls
           echo "pwd:"
           pwd
+
           cd homebrew-core
           git pull origin master
           git checkout -b master
+
           # Set git identity
           git config user.email "admin@azuredevops.com"
           git config user.name "Automated Account"
-          touch readme2.md
-          git branch update2
-          git checkout update2
-          git pull origin update2
-          sha_number="testsha9d"
-          release_url="https:\/\/hi.com"
+          
+          #sha_number="testsha9d"
+          release_url="https:\/\/github.com/microsoft/homebrew-bedrock/releases/download/$package_version/dist.tar.gz
+          echo "release_url:"
+          echo $release_url
+      
           echo "ls"
           ls
+
           cd Formula
           sed -i "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb
           sed -i "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb
+          
           echo bedrock-cli.rb
+          
           git add -f bedrock-cli.rb
-          git commit -m "Update formula"
-          git push origin update2
-          #git push origin master
+          git commit -m "Update formula with new release."
+          
+          git push origin master
       

@@ -24,3 +24,10 @@ stages:
           tagSource: "gitTag" # or "userSpecifiedTag"
           addChangeLog: true
           isDraft: true
+  - stage: update_homebrew_package
+    dependsOn: github_release
+    jobs:
+      - template: azure-pipelines/templates/update-homebrew-formula.yml
+        parameters:
+          GitHubConnection: "edaena"
+          tagSource: "gitTag"
