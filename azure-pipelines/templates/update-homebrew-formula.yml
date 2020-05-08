@@ -19,5 +19,5 @@ jobs:
         clean: true
       - script: dir $(Build.SourcesDirectory)
       - script: ls
-      - script: git pull
+      - script: git pull origin master
       
