@@ -21,8 +21,10 @@ jobs:
           includeRootFolder: true
           archiveFile: $(Agent.BuildDirectory)/dist.tar.gz
           replaceExistingArchive: true 
-      - publish: $(System.DefaultWorkingDirectory)/dist.tar.gz
+      - publish: $(Agent.BuildDirectory)/dist.tar.gz
         artifact: BedrockDist
+       - publish: $(Agent.BuildDirectory)/dist
+        artifact: dist
       # - task: GitHubRelease@1
       #   displayName: "GitHub release ${{ parameters.action }}"
       #   inputs:
