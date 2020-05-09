@@ -35,7 +35,7 @@ jobs:
           echo $sha_number
 
           #package_version=$(cat ./$(Agent.BuildDirectory)/BedrockPackage/package.json | grep "version" | sed -e 's/"version": "//g')
-          version_tag=$(echo ./$(Agent.BuildDirectory)/BedrockPackage/version.txt)
+          version_tag=$(echo ./$(Agent.BuildDirectory)/BedrockVersion/version.txt)
           echo "***version:"
           echo $version_tag
 
