@@ -27,14 +27,14 @@ jobs:
           echo "Compute dist sha256"
           echo "ls files in Agent.BuildDirectory"
           echo ls $(Agent.BuildDirectory)
-          cd $(Agent.BuildDirectory)/BedrockDist
-          file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/dist.tar.gz)
+          #cd $(Agent.BuildDirectory)/BedrockDist
+          file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/BedrockDist/dist.tar.gz)
           sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
 
           echo "***sha number:"
           echo $sha_number
 
-          package_version=$(cat ./$(Agent.BuildDirectory)/dist/package.json | grep "version" | sed -e 's/"version": "//g')
+          package_version=$(cat ./$(Agent.BuildDirectory)/BedrockPackage/package.json | grep "version" | sed -e 's/"version": "//g')
           version_tag=$(echo $package_version | sed -e 's/ //g')
           echo "***version:"
           echo $version_tag
