@@ -20,7 +20,7 @@ jobs:
         artifact: dist
       
       - script: |
-          package_version=$(cat ./$(System.DefaultWorkingDirectory)/BedrockPackage/package.json | grep "version" | sed -e 's/"version": "//g')
+          package_version=$(cat ./$(System.DefaultWorkingDirectory)/package.json | grep "version" | sed -e 's/"version": "//g')
           echo $package_version | sed -e 's/ //g' > version.txt
       
       - publish: $(System.DefaultWorkingDirectory)/version.txt
