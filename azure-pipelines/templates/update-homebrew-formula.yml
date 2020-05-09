@@ -46,7 +46,7 @@ jobs:
           echo "pwd:"
           pwd
 
-          cd homebrew-core
+          #cd homebrew-core
           git pull origin master
           git checkout -b master
 
@@ -55,6 +55,7 @@ jobs:
           git config user.name "Automated Account"
           
           #sha_number="testsha9d"
+          echo "__compute release url:"
           release_url="https:\/\/github.com/microsoft/homebrew-bedrock/releases/download/$version_tag/dist.tar.gz
           echo "***release_url:"
           echo $release_url
