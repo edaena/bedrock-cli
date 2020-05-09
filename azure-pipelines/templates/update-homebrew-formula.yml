@@ -21,6 +21,9 @@ jobs:
         clean: true
       - script: |
           echo "Compute dist sha256"
+          echo "ls files in Agent.BuildDirectory"
+          echo ls $(Agent.BuildDirectory)
+          cd $(Agent.BuildDirectory)
           file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/dist.tar.gz)
           sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
 
@@ -32,6 +35,7 @@ jobs:
           echo $package_version
 
           dir $(Build.SourcesDirectory)
+          cd $(Build.SourcesDirectory)
           echo "ls:"
           ls
           echo "pwd:"
