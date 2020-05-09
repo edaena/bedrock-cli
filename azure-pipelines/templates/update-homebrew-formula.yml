@@ -23,7 +23,7 @@ jobs:
           echo "Compute dist sha256"
           echo "ls files in Agent.BuildDirectory"
           echo ls $(Agent.BuildDirectory)
-          cd $(Agent.BuildDirectory)
+          cd $(Agent.BuildDirectory)/BedrockDist
           file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/dist.tar.gz)
           sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
 
