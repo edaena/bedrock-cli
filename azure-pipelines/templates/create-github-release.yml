@@ -23,7 +23,7 @@ jobs:
           replaceExistingArchive: true 
       - publish: $(Agent.BuildDirectory)/dist.tar.gz
         artifact: BedrockDist
-       - publish: $(Agent.BuildDirectory)/dist
+      - publish: $(Agent.BuildDirectory)/dist
         artifact: dist
       # - task: GitHubRelease@1
       #   displayName: "GitHub release ${{ parameters.action }}"
