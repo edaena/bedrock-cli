@@ -9,7 +9,7 @@ resources:
   repositories:
   - repository: BedrockHomebrewCore # The name used to reference this repository in the checkout step
     type: github
-    endpoint: ${{ parameters.GitHubConnection }}
+    endpoint: "edaena"
     name: edaena/homebrew-core
 
 stages:
