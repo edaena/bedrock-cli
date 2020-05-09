@@ -12,6 +12,14 @@ jobs:
       vmImage: ubuntu-16.04
     steps:
       - download: current
+      - task: DownloadPipelineArtifact@2
+        inputs:
+          artifact: 'dist'
+          path: $(Agent.BuildDirectory)
+       - task: DownloadPipelineArtifact@2
+        inputs:
+          artifact: 'BedrockDist'
+          path: $(Agent.BuildDirectory)
       - task: NodeTool@0
         displayName: "Use Node 12.x"
         inputs:
