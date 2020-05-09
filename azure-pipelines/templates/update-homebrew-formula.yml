@@ -38,6 +38,7 @@ jobs:
           echo "***sha number:"
           echo $sha_number
 
+          cd $(Agent.BuildDirectory)/dist
           package_version=$(cat ./$(Agent.BuildDirectory)/package.json | grep "version" | sed -e 's/"version": "//g')
           version_tag=$(echo $package_version | sed -e 's/ //g')
           echo "***version:"
