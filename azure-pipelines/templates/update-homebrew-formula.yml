@@ -20,10 +20,6 @@ jobs:
         inputs:
           artifact: 'BedrockDist'
           path: $(Agent.BuildDirectory)
-      - task: NodeTool@0
-        displayName: "Use Node 12.x"
-        inputs:
-          versionSpec: 12.x
       - checkout: BedrockHomebrewCore
         persistCredentials: true
         clean: true
@@ -38,8 +34,7 @@ jobs:
           echo "***sha number:"
           echo $sha_number
 
-          cd $(Agent.BuildDirectory)/dist
-          package_version=$(cat ./$(Agent.BuildDirectory)/package.json | grep "version" | sed -e 's/"version": "//g')
+          package_version=$(cat ./$(Agent.BuildDirectory)/dist/package.json | grep "version" | sed -e 's/"version": "//g')
           version_tag=$(echo $package_version | sed -e 's/ //g')
           echo "***version:"
           echo $version_tag
