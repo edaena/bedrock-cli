@@ -16,7 +16,7 @@ jobs:
         inputs:
           artifact: 'dist'
           path: $(Agent.BuildDirectory)
-       - task: DownloadPipelineArtifact@2
+      - task: DownloadPipelineArtifact@2
         inputs:
           artifact: 'BedrockDist'
           path: $(Agent.BuildDirectory)
