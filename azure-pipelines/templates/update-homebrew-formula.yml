@@ -56,7 +56,7 @@ jobs:
           
           #sha_number="testsha9d"
           echo "__compute release url:"
-          release_url="https:\/\/github.com/microsoft/homebrew-bedrock/releases/download/$version_tag/dist.tar.gz
+          release_url="https:\/\/github.com/microsoft/homebrew-bedrock/releases/download/$version_tag/dist.tar.gz"
           echo "***release_url:"
           echo $release_url
       
