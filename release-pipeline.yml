@@ -35,6 +35,3 @@ stages:
     dependsOn: github_release
     jobs:
       - template: azure-pipelines/templates/update-homebrew-formula.yml
-        parameters:
-          GitHubConnection: "edaena"
-          tagSource: "gitTag"
