@@ -1,10 +1,4 @@
   
-#parameters:
-#  GitHubConnection: "" # defaults for any parameters that aren't specified
-parameters:
-  GitHubConnection: "" # defaults for any parameters that aren't specified
-  tagSource: "gitTag"
-
 jobs:
   - job: Update_Homebrew_Formula
     timeoutInMinutes: 30 # timeout on job if deploy is not completed in 30 minutes
