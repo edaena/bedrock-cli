@@ -36,14 +36,8 @@ jobs:
           # Set git identity
           git config user.email "admin@azuredevops.com"
           git config user.name "Automated Account"
-          
-          release_url="https:\/\/github.com/microsoft/homebrew-bedrock/releases/download/$version_tag/dist.tar.gz"
-          echo "release_url"
-          echo $release_url
 
           cd Formula
-          #sed -i ".txt" "s/url \".*\"/url \"$my_new_url\"/g" bedrock-cli-test.rb
-          #sed -i "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb
           sed -i "s/\/v.*\//\/$version_tag\//g" bedrock-cli.rb
           cat bedrock-cli.rb
           sed -i "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb

@@ -30,20 +30,20 @@ jobs:
           echo -e $sha_number >> $(Agent.BuildDirectory)/package-info.txt
       - publish: $(Agent.BuildDirectory)/package-info.txt
         artifact: BedrockPackage
-      # - task: GitHubRelease@1
-      #   displayName: "GitHub release ${{ parameters.action }}"
-      #   inputs:
-      #     action: ${{ parameters.action }}
-      #     gitHubConnection: ${{ parameters.GitHubConnection }}
-      #     repositoryName: "$(Build.Repository.Name)"
-      #     releaseNotesFilePath: ${{ parameters.releaseNotesFilePath }}
-      #     target: ${{ parameters.target }}
-      #     assets: |
-      #       $(Agent.BuildDirectory)/dist/bedrock-linux
-      #       $(Agent.BuildDirectory)/dist/bedrock-macos
-      #       $(Agent.BuildDirectory)/dist/bedrock-win.exe
-      #       $(Agent.BuildDirectory)/dist.tar.gz
-      #     tagSource: ${{ parameters.tagSource }}
-      #     isDraft: ${{ parameters.isDraft }}
-      #     isPreRelease: ${{ parameters.isPrelease }}
-      #     addChangeLog: ${{ parameters.addChangeLog }}
+      - task: GitHubRelease@1
+        displayName: "GitHub release ${{ parameters.action }}"
+        inputs:
+          action: ${{ parameters.action }}
+          gitHubConnection: ${{ parameters.GitHubConnection }}
+          repositoryName: "$(Build.Repository.Name)"
+          releaseNotesFilePath: ${{ parameters.releaseNotesFilePath }}
+          target: ${{ parameters.target }}
+          assets: |
+            $(Agent.BuildDirectory)/dist/bedrock-linux
+            $(Agent.BuildDirectory)/dist/bedrock-macos
+            $(Agent.BuildDirectory)/dist/bedrock-win.exe
+            $(Agent.BuildDirectory)/dist.tar.gz
+          tagSource: ${{ parameters.tagSource }}
+          isDraft: ${{ parameters.isDraft }}
+          isPreRelease: ${{ parameters.isPrelease }}
+          addChangeLog: ${{ parameters.addChangeLog }}
