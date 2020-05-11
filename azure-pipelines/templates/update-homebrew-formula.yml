@@ -44,7 +44,7 @@ jobs:
           cd Formula
           #sed -i ".txt" "s/url \".*\"/url \"$my_new_url\"/g" bedrock-cli-test.rb
           #sed -i "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb
-          sed -i ".txt" "s/\"https.*\.tar\.gz\"/\"$release_url\"/g" bedrock-cli.rb
+          sed -i "s/\/v.*\//\/$version_tag\//g" bedrock-cli.rb
           cat bedrock-cli.rb
           sed -i "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb
           cat bedrock-cli.rb
