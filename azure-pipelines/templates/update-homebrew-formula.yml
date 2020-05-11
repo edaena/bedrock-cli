@@ -29,13 +29,15 @@ jobs:
           echo ls $(Agent.BuildDirectory)
           #cd $(Agent.BuildDirectory)/BedrockDist
           file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/BedrockDist/dist.tar.gz)
-          sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
+          #sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
+          sha_number=$(sed -n '2p' < version.txt)
 
           echo "***sha number:"
           echo $sha_number
 
           #package_version=$(cat ./$(Agent.BuildDirectory)/BedrockPackage/package.json | grep "version" | sed -e 's/"version": "//g')
-          version_tag=$(cat $(Agent.BuildDirectory)/BedrockVersion/version.txt)
+          #version_tag=$(cat $(Agent.BuildDirectory)/BedrockVersion/version.txt)
+          version_tag=$(sed -n '1p' < version.txt)
           echo "***version:"
           echo $version_tag
 
