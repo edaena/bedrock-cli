@@ -20,31 +20,14 @@ jobs:
         persistCredentials: true
         clean: true
       - script: |
-          echo "Compute dist sha256"
-          echo "ls files in Agent.BuildDirectory"
-          echo ls $(Agent.BuildDirectory)
-          #cd $(Agent.BuildDirectory)/BedrockDist
-          #file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/BedrockDist/dist.tar.gz)
-          #sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
+          # Read version and sha256 number
           sha_number=$(sed -n '2p' < $(Agent.BuildDirectory)/BedrockPackage/package-info.txt)
-
-          echo "***sha number:"
-          echo $sha_number
-
-          #package_version=$(cat ./$(Agent.BuildDirectory)/BedrockPackage/package.json | grep "version" | sed -e 's/"version": "//g')
-          #version_tag=$(cat $(Agent.BuildDirectory)/BedrockVersion/version.txt)
           version_tag=$(sed -n '1p' < $(Agent.BuildDirectory)/BedrockPackage/package-info.txt)
-          echo "***version:"
-          echo $version_tag
 
-          dir $(Build.SourcesDirectory)
+           dir $(Build.SourcesDirectory)
           cd $(Build.SourcesDirectory)
-          echo "ls:"
-          ls
-          echo "pwd:"
-          pwd
 
-          #cd homebrew-core
+          # Add changes to the homebrew formula repository
           git pull origin master
           git checkout -b master
 
@@ -52,21 +35,12 @@ jobs:
           git config user.email "admin@azuredevops.com"
           git config user.name "Automated Account"
           
-          #sha_number="testsha9d"
-          echo "__compute release url:"
           release_url="https:\/\/github.com/microsoft/homebrew-bedrock/releases/download/$version_tag/dist.tar.gz"
-          echo "***release_url:"
-          echo $release_url
-      
-          echo "ls"
-          ls
 
           cd Formula
           sed -i "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb
           sed -i "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb
-          
-          cat bedrock-cli.rb
-          
+
           git add -f bedrock-cli.rb
           git commit -m "Update formula with new release."
           
