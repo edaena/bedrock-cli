@@ -16,10 +16,6 @@ jobs:
         inputs:
           artifact: 'BedrockPackage'
           path: $(Agent.BuildDirectory)
-      - task: DownloadPipelineArtifact@2
-        inputs:
-          artifact: 'BedrockDist'
-          path: $(Agent.BuildDirectory)
       - checkout: BedrockHomebrewCore
         persistCredentials: true
         clean: true
