@@ -23,8 +23,10 @@ jobs:
           # Read version and sha256 number
           sha_number=$(sed -n '2p' < $(Agent.BuildDirectory)/BedrockPackage/package-info.txt)
           version_tag=$(sed -n '1p' < $(Agent.BuildDirectory)/BedrockPackage/package-info.txt)
+          echo "version tag"
+          echo $version_tag
 
-           dir $(Build.SourcesDirectory)
+          dir $(Build.SourcesDirectory)
           cd $(Build.SourcesDirectory)
 
           # Add changes to the homebrew formula repository
@@ -36,10 +38,15 @@ jobs:
           git config user.name "Automated Account"
           
           release_url="https:\/\/github.com/microsoft/homebrew-bedrock/releases/download/$version_tag/dist.tar.gz"
+          echo "release_url"
+          echo $release_url
 
           cd Formula
+          #sed -i ".txt" "s/url \".*\"/url \"$my_new_url\"/g" bedrock-cli-test.rb
           sed -i "s/url \".*\"/url \"$release_url\"/g" bedrock-cli.rb
+          cat bedrock-cli.rb
           sed -i "s/sha256 \".*\"/sha256 \"$sha_number\"/g" bedrock-cli.rb
+          cat bedrock-cli.rb
 
           git add -f bedrock-cli.rb
           git commit -m "Update formula with new release."
