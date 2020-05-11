@@ -14,7 +14,7 @@ jobs:
       - download: current
       - task: DownloadPipelineArtifact@2
         inputs:
-          artifact: 'BedrockVersion'
+          artifact: 'BedrockPackage'
           path: $(Agent.BuildDirectory)
       - task: DownloadPipelineArtifact@2
         inputs:
@@ -28,16 +28,16 @@ jobs:
           echo "ls files in Agent.BuildDirectory"
           echo ls $(Agent.BuildDirectory)
           #cd $(Agent.BuildDirectory)/BedrockDist
-          file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/BedrockDist/dist.tar.gz)
+          #file_sha=$(openssl dgst  -sha256 $(Agent.BuildDirectory)/BedrockDist/dist.tar.gz)
           #sha_number=$(echo $file_sha|  sed -e 's/SHA256(.*)= //g')
-          sha_number=$(sed -n '2p' < $(Agent.BuildDirectory)/BedrockVersion/version.txt)
+          sha_number=$(sed -n '2p' < $(Agent.BuildDirectory)/BedrockPackage/package-info.txt)
 
           echo "***sha number:"
           echo $sha_number
 
           #package_version=$(cat ./$(Agent.BuildDirectory)/BedrockPackage/package.json | grep "version" | sed -e 's/"version": "//g')
           #version_tag=$(cat $(Agent.BuildDirectory)/BedrockVersion/version.txt)
-          version_tag=$(sed -n '1p' < $(Agent.BuildDirectory)/BedrockVersion/version.txt)
+          version_tag=$(sed -n '1p' < $(Agent.BuildDirectory)/BedrockPackage/package-info.txt)
           echo "***version:"
           echo $version_tag
 
