@@ -71,23 +71,23 @@ steps:
         COVERAGE_VARIANCE: $(COVERAGE_VARIANCE)
     condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), endsWith(variables['Agent.JobName'], 'node_12_x'))
 
-  - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@6
-    displayName: 'Check build quality'
-    inputs:
-      checkWarnings: false
-      warningFailOption: fixed
-      warningFilters: ''
-      showStatistics: true
-      checkCoverage: true
-      coverageFailOption: build # We are comparing against the previous build in baseBranchRef
-      coverageType: branches # We are looking at code branch coverage, not line coverage
-      coverageDeltaType: percentage
-      allowCoverageVariance: true
-      coverageVariance: $(COVERAGE_VARIANCE) # Prefer a value less 1.00
-      baseDefinitionId: $(BEDROCK_CLI_DEFINITION_ID)
-      baseBranchRef: refs/heads/master
-      runTitle: 'Code Coverage Evaluation'
-    condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), endsWith(variables['Agent.JobName'], 'node_12_x'))
+  # - task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@6
+  #   displayName: 'Check build quality'
+  #   inputs:
+  #     checkWarnings: false
+  #     warningFailOption: fixed
+  #     warningFilters: ''
+  #     showStatistics: true
+  #     checkCoverage: true
+  #     coverageFailOption: build # We are comparing against the previous build in baseBranchRef
+  #     coverageType: branches # We are looking at code branch coverage, not line coverage
+  #     coverageDeltaType: percentage
+  #     allowCoverageVariance: true
+  #     coverageVariance: $(COVERAGE_VARIANCE) # Prefer a value less 1.00
+  #     baseDefinitionId: $(BEDROCK_CLI_DEFINITION_ID)
+  #     baseBranchRef: refs/heads/master
+  #     runTitle: 'Code Coverage Evaluation'
+  #   condition: and(eq(variables['Agent.JobStatus'], 'Succeeded'), endsWith(variables['Agent.JobName'], 'node_12_x'))
 
   - task: PublishPipelineArtifact@1
     inputs:
