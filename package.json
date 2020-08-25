@@ -1,6 +1,10 @@
 {
   "name": "bedrock",
+<<<<<<< HEAD
   "version": "0.6.13",
+=======
+  "version": "0.6.5",
+>>>>>>> f49eb021c9860f8f8e38d9aeb9b15644651232e9
   "description": "The missing Bedrock CLI",
   "author": "Bedrock Team (https://aka.ms/bedrock)",
   "contributors": [],
@@ -33,6 +37,7 @@
     "@types/uuid": "^3.4.5",
     "@typescript-eslint/eslint-plugin": "^2.24.0",
     "@typescript-eslint/parser": "^2.24.0",
+    "clui": "^0.3.6",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "husky": ">=1",
@@ -77,6 +82,7 @@
     "@azure/identity": "^1.0.0",
     "@azure/keyvault-secrets": "^4.0.0",
     "@azure/ms-rest-nodeauth": "^3.0.0",
+    "@types/clui": "^0.3.0",
     "@types/fs-extra": "^8.0.0",
     "@types/git-url-parse": "^9.0.0",
     "@types/mkdirp": "^0.5.2",
@@ -97,7 +103,7 @@
     "open": "^6.4.0",
     "shelljs": "^0.8.3",
     "simple-git": "^1.126.0",
-    "spektate": "^1.0.6",
+    "spektate": "^1.0.11",
     "ssh-url": "^0.1.5",
     "uuid": "^3.3.3",
     "winston": "^3.2.1"
